@@ -26,13 +26,15 @@ rstudio_ide
 intro-reproducibility
 themes-and-accessiblilty
 intro-sessions
+functions
 packages
 install-package
 loading-a-package
 tidyverse
-function-help
+using-functions
 arguments
 argument-names
+function-help
 tab-auto-complete
 objects
 help

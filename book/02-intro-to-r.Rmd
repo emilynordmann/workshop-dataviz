@@ -65,19 +65,22 @@ If you have the above settings configured correctly, when you open up RStudio an
 
 Try doing each of these now. Additionally, now would be a good time to create a notebook where you can keep a record of useful hints and tips and things to try when your code isn't working. Add "restart R session" to this notebook as your first item. 
 
-## Packages and functions {#packages}
+## Functions {#functions}
 
 When you install R you will have access to a range of `r glossary("function", "functions")` including options for `r glossary("data wrangling")` and statistical analysis. The functions that are included in the default installation are typically referred to as `r glossary("base R")` and you can think of them like the default apps that come pre-loaded on your phone. 
 
 A `r glossary("function")` is a name that refers to some code you can reuse. We'll be using functions that are provided in packages, but you can also write your own functions. 
 
-If you type a function into the console pane, it will run as soon as you hit enter. If you put the function in a `r glossary("script")` or `r glossary("R Markdown")` document in the `r glossary("panes", "source pane")`, it won't run until you run the script, `r glossary("knit")` the R Markdown file, or run a code `r glossary("chunk")`. You'll learn more about this in Chapter\ \@ref(reports).
+If you type a function into the console pane, it will run as soon as you hit enter. If you put the function in a `r glossary("script")` or `r glossary("R Markdown")` document in the `r glossary("panes", "source pane")`, it won't run until you run the script, `r glossary("knit")` the R Markdown file, or run a code `r glossary("chunk")`. You'll learn more about this in the workshop.
 
 For example, the function `sum()` is included in base R, and does what you would expect. In the console, run the below code:
 
 ```{r}
 sum(1,2,3)
 ```
+
+## Packages {#packages}
+
 One of the great things about R, however, is that it is **user extensible**: anyone can create a new add-on that extends its functionality. There are currently thousands of `r glossary("package", "packages")` that R users have created to solve many different kinds of problems, or just simply to have fun. For example, there are packages for data visualisation, machine learning, interactive dashboards, web scraping, and playing games such as Sudoku.
 
 Add-on packages are not distributed with base R, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install PokemonGo on your smartphone. The main repository where packages reside is called `r glossary("CRAN")`, the Comprehensive R Archive Network.
@@ -130,7 +133,7 @@ devtools::install_github("hrbrmstr/waffle")
 
 ### Loading a package
 
-This is done using the `library()` function. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `library(rio)` within a session, the functions in the package referred to by `rio` will be made available for your R session. The next time you start R, you will need to run `library(rio)` again if you want to access that package.
+This is done using the `library()` function. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `library(patchwork)` within a session, the functions in the package referred to by `patchwork` will be made available for your R session. The next time you start R, you will need to run `library(patchwork)` again if you want to access that package.
 
 After installing the`r pkg("tidyverse")` package, you can load it for your current R session as follows:
 
@@ -146,46 +149,18 @@ You can use the convention `package::function()` to indicate in which add-on pac
 
 ### Tidyverse
 
-`r pkg("tidyverse")`is a meta-package that loads several packages we'll be using in almost every chapter in this book:
+`r pkg("tidyverse")`is a meta-package that loads several packages that are incredibly useful for cleaning, processing, summarising, and visualising almost any type of data:
 
-- `r pkg("ggplot2")`, for data visualisation (Chapter\ \@ref(viz))
-- `r pkg("readr")`, for data import (Chapter\ \@ref(data))
-- `r pkg("tibble")`, for tables (Chapter\ \@ref(data))
-- `r pkg("tidyr")`, for data tidying (Chapter\ \@ref(tidy))
-- `r pkg("dplyr")`, for data manipulation (Chapter\ \@ref(wrangle))
+- `r pkg("ggplot2")`, for data visualisation
+- `r pkg("readr")`, for data import 
+- `r pkg("tibble")`, for tables
+- `r pkg("tidyr")`, for data tidying 
+- `r pkg("dplyr")`, for data manipulation 
 - `r pkg("stringr")`, for `r glossary("string", "strings")`
 - `r pkg("forcats")`, for `r glossary("factor", "factors")`
 - `r pkg("purrr")`, for repeating things
 
-### Function Help
-
-When you load the `r pkg("tidyverse")` it automatically loads all of the above packages, however, it can be helpful to know which package a function comes from if you need to Google it. If a `r glossary("function")` is in `r glossary("base R")` or a loaded package, you can type `?function_name` in the console to access the help file. At the top of the help it will give you the function and package name. 
-
-If the package isn't loaded, use `?package_name::function_name` or specify the package in the `help()` function. When you aren't sure what package the function is in, use the shortcut `??function_name`.
-
-```{r help, eval = FALSE}
-# if the package is loaded
-?ggplot2
-help("ggplot2")
-
-# works whether or not the package is loaded
-?ggplot2::ggplot
-help("ggplot", package="ggplot2") 
-
-# shows a list of potentially matching functions
-??ggplot
-```
-
-<div class="small_right" style="width: 50%; max-width: 400px;"><img src="images/intro/function_help.png" /></div>
-
-Function help is always organised in the same way. For example, look at the help for `?stats::rnorm`. At the top, it tells you the name of the function and its package in curly brackets, then a short description of the function, followed by a longer description. The **Usage** section shows the function with all of its `r glossary("argument", "arguments")`. If any of those arguments have default values, they will be shown like `function(arg = default)`. The **Arguments** section lists each argument with an explanation. There may be a **Details** section after this with even more detail about the functions. The **Examples** section is last, and shows examples that you can run in your console window to see how the function works.
-
-
-::: {.try data-latex=""}
-
-* What is the first argument to the `mean` function? `r mcq(c("trim", "na.rm", "mean", answer="x"))`
-* What package is `read_excel` in? `r mcq(c("readr", answer="readxl", "base", "stats"))`
-:::
+## Using functions
 
 ### Arguments
 
@@ -255,6 +230,35 @@ sample(size = 5, replace = TRUE, x = letters)
 When you are first learning R, you may find it useful to write out the argument names as it can help you remember and understand what each part of the function is doing. However, as your skills progress you may find it quicker to omit the argument names and you will also see examples of code online that do not use argument names, so it is important to be able to understand which argument each bit of code is referring to (or look up the help documentation to check).
 
 In this workshop, we will always write out the argument names the first time we use each function. However, in subsequent uses they may be omitted.
+
+### Function help
+
+When you load the `r pkg("tidyverse")` it automatically loads all of the above packages, however, it can be helpful to know which package a function comes from if you need to Google it. If a `r glossary("function")` is in `r glossary("base R")` or a loaded package, you can type `?function_name` in the console to access the help file. At the top of the help it will give you the function and package name. 
+
+If the package isn't loaded, use `?package_name::function_name` or specify the package in the `help()` function. When you aren't sure what package the function is in, use the shortcut `??function_name`.
+
+```{r help, eval = FALSE}
+# if the package is loaded
+?ggplot2
+help("ggplot2")
+
+# works whether or not the package is loaded
+?ggplot2::ggplot
+help("ggplot", package="ggplot2") 
+
+# shows a list of potentially matching functions
+??ggplot
+```
+
+Function help is always organised in the same way. For example, look at the help for `?stats::rnorm`. At the top, it tells you the name of the function and its package in curly brackets, then a short description of the function, followed by a longer description. The **Usage** section shows the function with all of its `r glossary("argument", "arguments")`. If any of those arguments have default values, they will be shown like `function(arg = default)`. 
+
+The **Arguments** section lists each argument with an explanation. There may be a **Details** section after this with even more detail about the functions. The **Examples** section is last, and shows examples that you can run in your console window to see how the function works.
+
+::: {.try data-latex=""}
+
+* What is the first argument to the `mean` function? `r mcq(c("trim", "na.rm", "mean", answer="x"))`
+* What package is `read_excel` in? `r mcq(c("readr", answer="readxl", "base", "stats"))`
+:::
 
 ### Tab auto-complete
 
@@ -329,13 +333,9 @@ vignette("ggplot2-specs", package = "ggplot2")
 
 ## Workshop set-up check {#workshop-prep}
 
-Restart your R sessino and then run the below code. If you have managed to install and update all software and packages as required, it should run without issue and produce the below histograms. 
+Restart your R session and then run the below code by copying and pasting it all into the console and then hitting enter. If you have managed to install and update all software and packages as required, it should run without issue and produce the below histograms. It will produce some messages that look like errors involving `stat_bin`, don't worry, they aren't errors and we'll explain what these messages mean in the workshop.
 
-If you get the error `there is no package called...`, make sure you have installed all the packages listed in Section\ \@ref(install-package).
-
-If you are having technical issues working on your own machine and cannot get the below code to run, please use [RStudio Cloud](https://rstudio.cloud/) for the workshop as there will not be time to troubleshoot installation problems.
-
-```{r}
+```{r message = FALSE, warning = FALSE}
 library(tidyverse)
 library(patchwork)
 library(ggthemes)
@@ -345,16 +345,22 @@ data(starwars)
 mass <- ggplot(starwars, aes(x = mass)) +
   geom_histogram() +
   theme_economist() +
-  labs(title = "Mass of Star Wars characters")
+  labs(title = "Star Wars", 
+       subtitle = "Character Mass (Kg)",
+       x = NULL, y = NULL)
 
 height <- ggplot(starwars, aes(x = height)) +
   geom_histogram() +
   theme_economist() +
-  labs(title = "Height of Star Wars characters")
+  labs(subtitle = "Character Height (cm)",
+       x = NULL, y = NULL)
 
 mass + height
 ```
 
+If you get the error `there is no package called...`, make sure you have installed all the packages listed in Section\ \@ref(install-package).
+
+If you are having technical issues working on your own machine and cannot get the below code to run, please use [RStudio Cloud](https://rstudio.cloud/) for the workshop as there will not be time to troubleshoot installation problems.
 
 ## Glossary {#glossary-intro}
 

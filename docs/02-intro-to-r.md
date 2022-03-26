@@ -64,13 +64,13 @@ If you have the above settings configured correctly, when you open up RStudio an
 
 Try doing each of these now. Additionally, now would be a good time to create a notebook where you can keep a record of useful hints and tips and things to try when your code isn't working. Add "restart R session" to this notebook as your first item. 
 
-## Packages and functions {#packages}
+## Functions {#functions}
 
 When you install R you will have access to a range of <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>functions</a> including options for <a class='glossary' target='_blank' title='The process of preparing data for visualisation and statistical analysis.' href='https://psyteachr.github.io/glossary/d#data-wrangling'>data wrangling</a> and statistical analysis. The functions that are included in the default installation are typically referred to as <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> and you can think of them like the default apps that come pre-loaded on your phone. 
 
 A <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> is a name that refers to some code you can reuse. We'll be using functions that are provided in packages, but you can also write your own functions. 
 
-If you type a function into the console pane, it will run as soon as you hit enter. If you put the function in a <a class='glossary' target='_blank' title='A plain-text file that contains commands in a coding language, such as R.' href='https://psyteachr.github.io/glossary/s#script'>script</a> or <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> document in the <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>source pane</a>, it won't run until you run the script, <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> the R Markdown file, or run a code <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>chunk</a>. You'll learn more about this in Chapter\ \@ref(reports).
+If you type a function into the console pane, it will run as soon as you hit enter. If you put the function in a <a class='glossary' target='_blank' title='A plain-text file that contains commands in a coding language, such as R.' href='https://psyteachr.github.io/glossary/s#script'>script</a> or <a class='glossary' target='_blank' title='The R-specific version of markdown: a way to specify formatting, such as headers, paragraphs, lists, bolding, and links, as well as code blocks and inline code.' href='https://psyteachr.github.io/glossary/r#r-markdown'>R Markdown</a> document in the <a class='glossary' target='_blank' title='RStudio is arranged with four window "panes".' href='https://psyteachr.github.io/glossary/p#panes'>source pane</a>, it won't run until you run the script, <a class='glossary' target='_blank' title='To create an HTML, PDF, or Word document from an R Markdown (Rmd) document' href='https://psyteachr.github.io/glossary/k#knit'>knit</a> the R Markdown file, or run a code <a class='glossary' target='_blank' title='A section of code in an R Markdown file' href='https://psyteachr.github.io/glossary/c#chunk'>chunk</a>. You'll learn more about this in the workshop.
 
 For example, the function `sum()` is included in base R, and does what you would expect. In the console, run the below code:
 
@@ -82,6 +82,9 @@ sum(1,2,3)
 ```
 ## [1] 6
 ```
+
+## Packages {#packages}
+
 One of the great things about R, however, is that it is **user extensible**: anyone can create a new add-on that extends its functionality. There are currently thousands of <a class='glossary' target='_blank' title='A group of R functions.' href='https://psyteachr.github.io/glossary/p#package'>packages</a> that R users have created to solve many different kinds of problems, or just simply to have fun. For example, there are packages for data visualisation, machine learning, interactive dashboards, web scraping, and playing games such as Sudoku.
 
 Add-on packages are not distributed with base R, but have to be downloaded and installed from an archive, in the same way that you would, for instance, download and install PokemonGo on your smartphone. The main repository where packages reside is called <a class='glossary' target='_blank' title='The Comprehensive R Archive Network: a network of ftp and web servers around the world that store identical, up-to-date, versions of code and documentation for R.' href='https://psyteachr.github.io/glossary/c#cran'>CRAN</a>, the Comprehensive R Archive Network.
@@ -137,7 +140,7 @@ devtools::install_github("hrbrmstr/waffle")
 
 ### Loading a package
 
-This is done using the `library()` function. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `library(rio)` within a session, the functions in the package referred to by `rio` will be made available for your R session. The next time you start R, you will need to run `library(rio)` again if you want to access that package.
+This is done using the `library()` function. This is like **launching** an app on your phone: the functionality is only there where the app is launched and remains there until you close the app or restart. For example, when you run `library(patchwork)` within a session, the functions in the package referred to by `patchwork` will be made available for your R session. The next time you start R, you will need to run `library(patchwork)` again if you want to access that package.
 
 After installing the<code class='package'>tidyverse</code> package, you can load it for your current R session as follows:
 
@@ -154,47 +157,18 @@ You can use the convention `package::function()` to indicate in which add-on pac
 
 ### Tidyverse
 
-<code class='package'>tidyverse</code>is a meta-package that loads several packages we'll be using in almost every chapter in this book:
+<code class='package'>tidyverse</code>is a meta-package that loads several packages that are incredibly useful for cleaning, processing, summarising, and visualising almost any type of data:
 
-- <code class='package'>ggplot2</code>, for data visualisation (Chapter\ \@ref(viz))
-- <code class='package'>readr</code>, for data import (Chapter\ \@ref(data))
-- <code class='package'>tibble</code>, for tables (Chapter\ \@ref(data))
-- <code class='package'>tidyr</code>, for data tidying (Chapter\ \@ref(tidy))
-- <code class='package'>dplyr</code>, for data manipulation (Chapter\ \@ref(wrangle))
+- <code class='package'>ggplot2</code>, for data visualisation
+- <code class='package'>readr</code>, for data import 
+- <code class='package'>tibble</code>, for tables
+- <code class='package'>tidyr</code>, for data tidying 
+- <code class='package'>dplyr</code>, for data manipulation 
 - <code class='package'>stringr</code>, for <a class='glossary' target='_blank' title='A piece of text inside of quotes.' href='https://psyteachr.github.io/glossary/s#string'>strings</a>
 - <code class='package'>forcats</code>, for <a class='glossary' target='_blank' title='A data type where a specific set of values are stored with labels; An explanatory variable manipulated by the experimenter' href='https://psyteachr.github.io/glossary/f#factor'>factors</a>
 - <code class='package'>purrr</code>, for repeating things
 
-### Function Help
-
-When you load the <code class='package'>tidyverse</code> it automatically loads all of the above packages, however, it can be helpful to know which package a function comes from if you need to Google it. If a <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> is in <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> or a loaded package, you can type `?function_name` in the console to access the help file. At the top of the help it will give you the function and package name. 
-
-If the package isn't loaded, use `?package_name::function_name` or specify the package in the `help()` function. When you aren't sure what package the function is in, use the shortcut `??function_name`.
-
-
-```r
-# if the package is loaded
-?ggplot2
-help("ggplot2")
-
-# works whether or not the package is loaded
-?ggplot2::ggplot
-help("ggplot", package="ggplot2") 
-
-# shows a list of potentially matching functions
-??ggplot
-```
-
-<div class="small_right" style="width: 50%; max-width: 400px;"><img src="images/intro/function_help.png" /></div>
-
-Function help is always organised in the same way. For example, look at the help for `?stats::rnorm`. At the top, it tells you the name of the function and its package in curly brackets, then a short description of the function, followed by a longer description. The **Usage** section shows the function with all of its <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>arguments</a>. If any of those arguments have default values, they will be shown like `function(arg = default)`. The **Arguments** section lists each argument with an explanation. There may be a **Details** section after this with even more detail about the functions. The **Examples** section is last, and shows examples that you can run in your console window to see how the function works.
-
-
-::: {.try data-latex=""}
-
-* What is the first argument to the `mean` function? <select class='webex-select'><option value='blank'></option><option value=''>trim</option><option value=''>na.rm</option><option value=''>mean</option><option value='answer'>x</option></select>
-* What package is `read_excel` in? <select class='webex-select'><option value='blank'></option><option value=''>readr</option><option value='answer'>readxl</option><option value=''>base</option><option value=''>stats</option></select>
-:::
+## Using functions
 
 ### Arguments
 
@@ -276,6 +250,36 @@ When you are first learning R, you may find it useful to write out the argument 
 
 In this workshop, we will always write out the argument names the first time we use each function. However, in subsequent uses they may be omitted.
 
+### Function help
+
+When you load the <code class='package'>tidyverse</code> it automatically loads all of the above packages, however, it can be helpful to know which package a function comes from if you need to Google it. If a <a class='glossary' target='_blank' title='A named section of code that can be reused.' href='https://psyteachr.github.io/glossary/f#function'>function</a> is in <a class='glossary' target='_blank' title='The set of R functions that come with a basic installation of R, before you add external packages' href='https://psyteachr.github.io/glossary/b#base-r'>base R</a> or a loaded package, you can type `?function_name` in the console to access the help file. At the top of the help it will give you the function and package name. 
+
+If the package isn't loaded, use `?package_name::function_name` or specify the package in the `help()` function. When you aren't sure what package the function is in, use the shortcut `??function_name`.
+
+
+```r
+# if the package is loaded
+?ggplot2
+help("ggplot2")
+
+# works whether or not the package is loaded
+?ggplot2::ggplot
+help("ggplot", package="ggplot2") 
+
+# shows a list of potentially matching functions
+??ggplot
+```
+
+Function help is always organised in the same way. For example, look at the help for `?stats::rnorm`. At the top, it tells you the name of the function and its package in curly brackets, then a short description of the function, followed by a longer description. The **Usage** section shows the function with all of its <a class='glossary' target='_blank' title='A variable that provides input to a function.' href='https://psyteachr.github.io/glossary/a#argument'>arguments</a>. If any of those arguments have default values, they will be shown like `function(arg = default)`. 
+
+The **Arguments** section lists each argument with an explanation. There may be a **Details** section after this with even more detail about the functions. The **Examples** section is last, and shows examples that you can run in your console window to see how the function works.
+
+::: {.try data-latex=""}
+
+* What is the first argument to the `mean` function? <select class='webex-select'><option value='blank'></option><option value=''>trim</option><option value=''>na.rm</option><option value=''>mean</option><option value='answer'>x</option></select>
+* What package is `read_excel` in? <select class='webex-select'><option value='blank'></option><option value=''>readr</option><option value='answer'>readxl</option><option value=''>base</option><option value=''>stats</option></select>
+:::
+
 ### Tab auto-complete
 
 One very useful feature of R Studio is  tab auto-complete for functions (see Figure \@ref(fig:img-autocomplete)). If you write the name of the function and then press the tab key, R Studio will show you the arguments that function takes along with a brief description. If you press enter on the argument name it will fill in the name for you, just like auto-complete on your phone. This is incredibly useful when you are first learning R and you should remember to use this feature frequently. 
@@ -351,11 +355,7 @@ vignette("ggplot2-specs", package = "ggplot2")
 
 ## Workshop set-up check {#workshop-prep}
 
-Restart your R sessino and then run the below code. If you have managed to install and update all software and packages as required, it should run without issue and produce the below histograms. 
-
-If you get the error `there is no package called...`, make sure you have installed all the packages listed in Section\ \@ref(install-package).
-
-If you are having technical issues working on your own machine and cannot get the below code to run, please use [RStudio Cloud](https://rstudio.cloud/) for the workshop as there will not be time to troubleshoot installation problems.
+Restart your R session and then run the below code by copying and pasting it all into the console and then hitting enter. If you have managed to install and update all software and packages as required, it should run without issue and produce the below histograms. It will produce some messages that look like errors involving `stat_bin`, don't worry, they aren't errors and we'll explain what these messages mean in the workshop.
 
 
 ```r
@@ -368,34 +368,24 @@ data(starwars)
 mass <- ggplot(starwars, aes(x = mass)) +
   geom_histogram() +
   theme_economist() +
-  labs(title = "Mass of Star Wars characters")
+  labs(title = "Star Wars", 
+       subtitle = "Character Mass (Kg)",
+       x = NULL, y = NULL)
 
 height <- ggplot(starwars, aes(x = height)) +
   geom_histogram() +
   theme_economist() +
-  labs(title = "Height of Star Wars characters")
+  labs(subtitle = "Character Height (cm)",
+       x = NULL, y = NULL)
 
 mass + height
 ```
 
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-```
-## Warning: Removed 28 rows containing non-finite values (stat_bin).
-```
-
-```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
-```
-
-```
-## Warning: Removed 6 rows containing non-finite values (stat_bin).
-```
-
 <img src="02-intro-to-r_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" />
 
+If you get the error `there is no package called...`, make sure you have installed all the packages listed in Section\ \@ref(install-package).
+
+If you are having technical issues working on your own machine and cannot get the below code to run, please use [RStudio Cloud](https://rstudio.cloud/) for the workshop as there will not be time to troubleshoot installation problems.
 
 ## Glossary {#glossary-intro}
 
