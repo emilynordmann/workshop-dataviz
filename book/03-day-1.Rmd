@@ -1,4 +1,4 @@
-# Day 1 {#day-1}
+# Session 1 {#day-1}
 
 ## Organising a project {#projects}
 
@@ -376,9 +376,7 @@ The `name` argument changes the axis label. The `breaks` argument sets the major
 
 ggplot(survey_data, aes(x = wait_time, y = call_time)) +
   geom_point(alpha = 0.2) + 
-  geom_smooth(method = lm, 
-              formula = y~x, 
-              colour = rgb(0, .5, .8)) +
+  geom_smooth(method = lm) +
   scale_x_continuous(name = "Wait Time (seconds)", 
                      breaks = seq(from = 0, to = 600, by = 60)) +
   scale_y_continuous(name = "Call time (seconds)",
@@ -397,9 +395,7 @@ If you want to change the minimum and maximum values on an axis, use the `coord_
 ggplot(survey_data, aes(x = wait_time, y = call_time)) +
   geom_point(colour = "dodgerblue", 
              alpha = 0.2) + 
-  geom_smooth(method = lm, 
-              formula = y~x, 
-              colour = rgb(0, .5, .8)) +
+  geom_smooth(method = lm) +
   scale_x_continuous(name = "Wait Time (seconds)", 
                      breaks = seq(from = 0, to = 600, by = 60)) +
   scale_y_continuous(name = "Call time (seconds)",
@@ -624,8 +620,7 @@ ggplot(survey_data,  aes(x = issue_category,
   # add a boxplot
   geom_boxplot(width = 0.25, 
                fill = "white", 
-               alpha = 0.75, 
-               outlier.alpha = 0) + 
+               alpha = 0.75) + 
   # add a point that represents the mean
   stat_summary(fun = mean, 
                geom = "point", 
@@ -655,13 +650,13 @@ In Figure\ \@ref(fig:layers), we emphasised the relationship between wait time a
 lm_plot <- 
   ggplot(survey_data, aes(x = wait_time, y = call_time)) +
   geom_point(alpha = 0.2) +
-  geom_smooth(method = lm, formula = y~x) +
+  geom_smooth(method = lm) +
   ggtitle("method = lm")
 
 loess_plot <- 
   ggplot(survey_data, aes(x = wait_time, y = call_time)) +
   geom_point(alpha = 0.2) +
-  geom_smooth(method = loess, formula = y~x) +
+  geom_smooth(method = loess) +
   ggtitle("method = loess")
 
 lm_plot + loess_plot
@@ -774,7 +769,7 @@ ggplot(gss_cat, aes(x = marital, y = age)) +
 
 `r unhide()`
 
-Finally, pick your two favourite plots from the above, spend some time adjusting the aesthetics (colours, themes, labels etc.), then combine them using `r pkg("patchwork")`. If you're on Twitter, share them with #PsyTeachR and tag [@emilynordmann](https://twitter.com/emilynordmann) and [@wtoivo1](https://twitter.com/wtoivo1).
+Finally, pick your two favourite plots from the above, spend some time adjusting the aesthetics (colours, themes, labels etc.), then combine them using `r pkg("patchwork")`. If you're on Twitter, share them with #PsyTeachR and tag @emilynordmann](https://twitter.com/emilynordmann) and [wtoivo1](https://twitter.com/wtoivo1).
 
 ## Glossary {#glossary-day1}
 
