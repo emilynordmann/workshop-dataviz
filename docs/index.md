@@ -2,7 +2,7 @@
 title: "Intro to Data Viz workshop" # edit
 #subtitle: "optional" 
 author: "Emily Nordmann" # edit
-date: "2022-04-12"
+date: "2022-07-25"
 site: bookdown::bookdown_site
 documentclass: book
 classoption: oneside # for PDFs

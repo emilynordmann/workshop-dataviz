@@ -127,8 +127,8 @@ install.packages(new_packages)
 Once you have the `r pkg("devtools")` package, you can also install packages from repositories other than CRAN, such as github. The following code installs the development version of a package for making waffle plots.
 
 ```{r install-waffle, eval = FALSE}
-# install waffle package 
-devtools::install_github("hrbrmstr/waffle")
+# install intro to data viz package 
+devtools::install_github("psyteachr/introdataviz")
 ```
 
 ### Loading a package
